@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>班级查询</h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">班级号：</label>
+                                    <div class="col-sm-7">
+                                        <input id="classId" type="text" class="form-control" placeholder="请输入班级号"><!-- userAccount after courseName  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">班级名：</label>
+                                    <div class="col-sm-7">
+                                        <input id="className" type="text" class="form-control" placeholder="请输入班级名"><!-- userAccount after courseName  -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">学院：</label>
+                                    <div class="col-sm-7">
+                                        <select id="majorName" class="form-control">
+                                            <option value="">请选择</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">年级：</label>
+                                    <div class="col-sm-7">
+                                        <select id="gradeName" class="form-control">
+                                            <option value="">请选择</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <button onclick="resetForm()" type="button" class="btn btn-primary">
+                                重 置
+                            </button>
+                            <button onclick="queryClassInfo()" type="button" class="btn btn-primary">
+                                查 询
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>班级列表</h5>
+                    <div class="ibox-tools">
+                        <a class="close-link" title="添加课程" data-toggle='modal' data-target='#myModal5' onclick="showEditClass('')">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table id = "classInfoTable" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th width="5%">编号</th>
+                            <th width="20%">班级名</th>
+                            <th width="20%">学院名</th>
+                            <th width="20%">年级名</th>
+                            <th width="35%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹窗布局开始-->
+<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="dialogTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form method="get" id="dialogClassInfo" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-9 droppable sortable ui-droppable ui-sortable" style="width: 100%">
+                            <div class="form-group draggable ui-draggable dropped">
+                                <label class="col-sm-2 control-label">班级名：</label>
+                                <div class="col-sm-5">
+                                    <input id="dialogClassName" name="dialogCourseName" type="text"  aria-required="true" aria-invalid="false" class="form-control" placeholder="请输入班级名">
+                                    <input id="dialogClassId" type="text" hidden>
+                                    <input id="dialogClassidId" type="text" value = "0" hidden>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 droppable sortable ui-droppable ui-sortable" style="width: 100%">
+                            <div class="form-group draggable ui-draggable dropped">
+                                <label class="col-sm-2 control-label">学院：</label>
+                                <div class="col-sm-5">
+                                    <select id="dialogMajorName" name="dialogMajorName" class="form-control"  aria-required="true" aria-invalid="false">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 droppable sortable ui-droppable ui-sortable"  style="width: 100%">
+                            <div class="form-group draggable ui-draggable dropped">
+                                <label class="col-sm-2 control-label">年级：</label>
+                                <div class="col-sm-5">
+                                    <select id="dialogGradeName" name="dialogGradeName" class="form-control"  aria-required="true" aria-invalid="false">
+                                        <option value="0">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" id="closeCourseInfoDialog" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="saveOrUpdateClassInfo()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal fade" id="classStudentShowDialog" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">学生列表</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" hidden id="CLDclassId">
+                <table class="table table-striped table-bordered table-hover dataTables-example " style="width:100%; margin:0 0 0 0; padding:0 0 0 0;">
+                    <thead>
+                    <tr>
+                        <th width="30%">学生学号</th>
+                        <th width="70%">学生姓名</th>
+                    </tr>
+                    </thead>
+                </table>
+                <div style="width:100%; height:400px; overflow-y:auto; " >
+                    <table id="CLDtbody" class="table table-striped table-bordered table-hover dataTables-example " style="width:100%;">
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/OJ/education/class.js}"></script>
+</body>
+
+</html>

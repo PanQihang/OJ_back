@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>文章信息列表</h5>
+            </div>
+            <div class="ibox-content">
+                <table id = "postTable" class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                    <tr>
+                        <th width="10%">文章ID</th>
+                        <th width="12.5%">题目</th>
+                        <th width="15%">内容</th>
+                        <th width="12.5%">作者</th>
+                        <th width="10%">发表时间</th>
+                        <th width="5%">浏览</th>
+                        <th width="5%">点赞</th>
+                        <th width="5%">回复</th>
+                        <th width="5%">置顶</th>
+                        <th width="17.5%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹窗布局-->
+<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="dialogTitle">帖子详情</h4>
+            </div>
+            <div class="modal-body">
+                <form method="get" id="dialogNoticeForm" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-9 droppable sortable ui-droppable ui-sortable" style="width: 100%">
+                            <div class="form-group draggable ui-draggable dropped">
+                                <label id="lable1" class="col-sm-2 control-label">标题：</label>
+                                <div class="col-sm-5">
+                                    <input id="postTitle" name="dialogNoticeTitle" type="text"  aria-required="true" aria-invalid="false" class="form-control" readonly>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-md-9 droppable sortable ui-droppable ui-sortable" style="width: 100%">-->
+                            <!--<div class="form-group draggable ui-draggable dropped">-->
+                                <!--<label id="lable2" class="col-sm-2 control-label">所属话题：</label>-->
+
+                                <!--<div class="col-sm-5">-->
+                                    <!--<input id="topic" type="text" >-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <div class="col-md-9 droppable sortable ui-droppable ui-sortable"  style="width: 100%">
+                            <div class="form-group draggable ui-draggable dropped">
+                                <label class="col-sm-2 control-label">发帖内容：</label>
+                                <div class="col-sm-5">
+                                    <div class="ibox-content no-padding" style="width:600px;">
+                                        <div class="summernote" id="content" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" id="closeUserInfoDialog" data-dismiss="modal">关闭</button>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var info = [[${info}]];
+</script>
+<script type="text/javascript" th:src="@{/js/OJ/other/postManger.js}"></script>
+</body>
+</html>

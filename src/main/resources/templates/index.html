@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>OJ-后台管理</title>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div th:replace="common/staticImport :: common_resource"></div>
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs" style="font-size:20px;">
+                                        <i class="fa fa-area-chart"></i>
+                                        <strong class="font-bold">OJ-back</strong>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                    <!--此处注入功能选项-->
+                    <li>
+                        <a class="J_menuItem" href="/homepage/">
+                            <i class="fa fa-home"></i>
+                            <span class="nav-label">首页</span>
+                        </a>
+                    </li>
+                    <div hidden id="leftPage" th:utext="${session.user_auth}"></div>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" aria-expanded="false" th:text="${session.user_name}">
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts" style="width: 130px;">
+                                <li>
+                                    <a data-toggle='modal' data-target='#resetPassword' onclick="formReset()">
+                                        <div>
+                                            <i class="fa fa-refresh"></i> 修改密码
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a id="a_logout" title="注销">
+                                        <div>
+                                            <i class="fa fa-times-circle"></i> 注销
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe id="J_iframe" width="100%" height="100%" src="/homepage/" frameborder="0" data-id="" seamless></iframe>
+            </div>
+        </div>
+        <!--右侧部分结束-->
+    </div>
+    <!--弹窗布局开始-->
+    <div class="modal inmodal fade" id="resetPassword" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="get" id="resetPasswordForm" class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-9 droppable sortable ui-droppable ui-sortable"  style="width: 100%">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-2 control-label">新密码：</label>
+                                    <div class="col-sm-5">
+                                        <input id="newPassword" name="newPassword" type="password"  aria-required="true" aria-invalid="false" class="form-control" placeholder="请输入新密码">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9 droppable sortable ui-droppable ui-sortable"  style="width: 100%">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-2 control-label">再次输入：</label>
+                                    <div class="col-sm-5">
+                                        <input id="verifyPassword" name="verifyPassword" type="password"  aria-required="true" aria-invalid="false" class="form-control" placeholder="请输入再次输入密码">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" id="closeUserInfoDialog" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="saveNewPassword()">保存</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗布局结束-->
+    <!-- 自定义js -->
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <script type="text/javascript" th:src="@{/js/hAdmin.js}"></script>
+
+
+</body>
+
+</html>

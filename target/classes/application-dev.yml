@@ -1,0 +1,24 @@
+spring:
+  profiles: dev
+  fileUploadPath:
+    path: C:/OJ/oj_file/
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/teaching?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
+  resources:
+    static-locations: classpath:/static,classpath:/templates,file:${spring.fileUploadPath.path}
+
+logging:
+    path: D:/Develop/DevelopWorkingSpace/IdeaProjects/log

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+
+<body class="gray-bg">
+
+<div class="container">
+    <div class="col-sm-4">
+    <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tw&skin=pitaya" frameborder="0" width="300" height="500" allowtransparency="true"></iframe>
+    </div>
+        <div class="col-lg-3">
+        <h1>课程管理</h1>
+        <h3>教师及课程的关系</h3>
+        <ul>
+            <li>教师与课程之间为多对多关系</li>
+            <li>一个教师可以教多门课程</li>
+            <li>一个课程可以有多个教师</li>
+        </ul>
+        <p>
+            <a class="btn btn-primary" href="/courseMn/">开始 »</a>
+        </p>
+    </div>
+        <div class="col-lg-3">
+            <h1>班级管理</h1>
+            <h3>课程与班级关系</h3>
+            <ul>
+                <li>课程与班级为多对多关系</li>
+                <li>一门课程可以有多个班级</li>
+                <li>一个班级可以有多个课程</li>
+            </ul>
+            <p>
+                <a class="btn btn-primary" href="/classMn/">开始 »</a>
+            </p>
+        </div>
+        <div class="col-lg-3">
+            <h1>学生管理</h1>
+            <h3>班级与学生关系</h3>
+            <ul>
+                <li>班级与学生为一对多关系</li>
+                <li>一个班级可以多个学生</li>
+                <li>一个学生属于一个班级</li>
+            </ul>
+            <p>
+                <a class="btn btn-primary" href="/studentMn/">开始 »</a>
+            </p>
+        </div>
+</div>
+<script type="text/javascript" th:src="@{/js/OJ/system/homepage.js}"></script>
+</body>
+
+</html>

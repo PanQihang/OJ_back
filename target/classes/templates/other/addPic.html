@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>文章信息</h3>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal" enctype='multipart/form-data'>
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">文章名：</label>
+                                    <div class="col-sm-7">
+                                        <input id="PicName" type="text" class="form-control" placeholder="请输入文章名">
+                                        <input id="PicId" type="text" hidden>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">备注：</label>
+                                    <div class="col-sm-7">
+                                        <input id="PicDescribes" name="PicDescribes" type="text"  aria-required="true" aria-invalid="false" class="form-control" placeholder="请输入文章的备注">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">描述：</label>
+                                    <div class="col-sm-7">
+                                        <div class="ibox-content no-padding" style="width: 900px;">
+                                            <div class="summernote" id="picDesc" name="picDesc">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">上传轮播图片：</label>
+                                    <div class="col-sm-7">
+                                        <input type="file" id='uploadPic' name="uploadPic" placeholder="请选择图片">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">图片上传进度：</label>
+                                    <div class="col-lg-7"
+                                         style="padding-left: 0; padding-right: 0; margin-bottom: 0;">
+                                        <div class="progress progress-striped active" style="">
+                                            <div id="progressBar" class="progress-bar progress-bar-success"
+                                                 role="progressbar" aria-valuemin="0" aria-valuenow="0"
+                                                 aria-valuemax="100" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                    <div id="showInfo">0KB/s</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="checkHave" style="display: none">
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">轮播图片展示：</label>
+                                    <div class="col-sm-7">
+                                        <img src="/css/img/2/1557998514067go.jpg" width="768px" height="224px" id="checkHaveImg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:right;">
+        <button onClick="javascript :history.back(-1);" type="button" class="btn btn-primary">
+            取 消
+        </button>
+        <button  type="button" class="btn btn-primary" style="width: 150px;" onClick="saveOrUpdatePic()">
+            保 存
+        </button>
+    </div>
+</div>
+<script th:inline="javascript">
+    var PicInfo = [[${info}]];
+</script>
+<script type="text/javascript" th:src="@{/js/OJ/other/addPic.js}"></script>
+
+<script>
+    $(function () {
+        var $input =  $("#uploadPic");
+        // 为input设定change事件
+        $input.change(function () {
+            //如果value不为空，调用文件加载方法
+            if($(this).val() != ""){
+                //alert($('#uploadPic')[0].files[0].name);
+                uploadPicToShow();
+            }
+        })
+    })
+
+</script>
+</body>
+
+</html>

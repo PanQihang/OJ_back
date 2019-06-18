@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>题目分析</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>提交状态分析</h5>
+             </div>
+             <div class="ibox-content">
+                 <div class="echarts" id="echarts-pie-chart"></div>
+            </div>
+         </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="'btn btn-primary" id="closeUserInfoDialog" data-dismiss="modal">关闭</button>
+    </div>
+    <script type="text/javascript" th:src="@{/js/OJ/testing/analyzeProblem.js}"></script>
+    <script type="text/javascript" th:src="@{/js/OJ/testing/drawnSubjectTree.js}"></script>
+    <script type="text/javascript" th:src="@{/js/plugins/echarts/echarts-all.js}"></script>
+
+</body>
+</html>

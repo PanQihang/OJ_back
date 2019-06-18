@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+
+
+        <div class="col-sm-6" style="width:100%; ">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>简要</h5>
+                    <div class="ibox-tools">
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table style="width:100%; ">
+                        <tr>
+                            <td style="width:50%; ">
+                                <div style="width:100%; ">
+                                    <div style="width:100%; height:60px;">
+                                        <div>
+                                            <span style="font-size:15px; ">名称：</span>
+                                            <span id="testName" style="font-size:15px; color:#cda15a; ">没得名字</span>
+                                        </div>
+                                        <div>
+                                            <span id="testSDate">开始时间：2019-04-23</span>
+                                        </div>
+                                        <div>
+                                            <span id="testEDate">结束时间：2019-04-23</span>
+                                        </div>
+                                    </div>
+                                    <div style="width:90%; height:300px;">
+                                        <table id="questionTable"
+                                               class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th width="30%">题目ID</th>
+                                                <th width="70%">题目名</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td style="width:50%; ">
+                                <div class="echarts" id="echarts-pie-chart" style="height:360px; "></div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>学生成绩列表</h5>
+                    <!--<div class="ibox-tools" style="width:600px;">-->
+                        <!--<table style="width:600px; ">-->
+                            <!--<tr>-->
+                                <!--<td width="50%">-->
+                                    <!--<div id='majorOption' class="form-group draggable ui-draggable dropped" style="width:300px;">-->
+                                        <!--<label class="col-sm-4 control-label">专业选择：</label>-->
+                                        <!--<div class="col-sm-7">-->
+                                            <!--<select id="majorId" class="form-control" style="margin-top:-10px; ">-->
+                                                <!--<option value="">所有班级</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                                <!--<td width="50%">-->
+                                    <!--<div id='classOption' class="form-group draggable ui-draggable dropped" style="width:300px;">-->
+                                        <!--<label class="col-sm-4 control-label">班级选择：</label>-->
+                                        <!--<div class="col-sm-7">-->
+                                            <!--<select id="classId" class="form-control" style="margin-top:-10px; " onchange="changeClass()">-->
+                                                <!--<option value="">请选择</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+                </div>
+                <div class="ibox-content">
+                    <table id="resultTable" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th width="15%">学号</th>
+                            <th width="15%">姓名</th>
+                            <th width="15%">班级</th>
+                            <th width="40%">试题对应分数</th>
+                            <th width="15%">总分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript">
+    var testInfo = [[${info}]];
+    //console.log(testInfo);
+</script>
+<script type="text/javascript" th:src="@{/js/plugins/echarts/echarts-all.js}"></script>
+<script type="text/javascript" th:src="@{/js/OJ/exam/echarts.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/OJ/competition/compScore.js}"></script>
+</body>
+</html>

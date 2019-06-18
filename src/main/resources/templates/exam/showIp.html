@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>IP查询</h5>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <!--<div class="form-group">-->
+                            <!--<div class="col-md-4 droppable sortable ui-droppable ui-sortable">-->
+                                <!--<div class="form-group draggable ui-draggable dropped">-->
+                                    <!--<label class="col-sm-4 control-label">IP号：</label>-->
+                                    <!--<div class="col-sm-7">-->
+                                        <!--<input id="userip" type="text" class="form-control" placeholder="请输入IP号">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--</div>-->
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">学号：</label>
+                                    <div class="col-sm-7">
+                                        <input id="userAccount" type="text" class="form-control" placeholder="请输入学号">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">姓名：</label>
+                                    <div class="col-sm-7">
+                                        <input id="userName" type="text" class="form-control" placeholder="请输入姓名">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <button onclick="resetForm()" type="button" class="btn btn-primary">
+                                重 置
+                            </button>
+                            <button onclick="queryIpInfo()" type="button" class="btn btn-primary">
+                                查 询
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>IP列表</h5>
+                </div>
+                <div class="ibox-content">
+                    <table id = "ipInfoTable" class="table table-striped table-bordered table-hover dataTables-example">
+                        <thead>
+                        <tr>
+                            <th width="20%">学号</th>
+                            <th width="20%">姓名</th>
+                            <th width="20%">班级</th>
+                            <th width="20%">ip</th>
+                            <th width="20%">时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:inline="javascript">
+    var ipInfo = [[${info}]];
+</script>
+<script type="text/javascript" th:src="@{/js/OJ/exam/showIp.js}"></script>
+</body>
+
+</html>

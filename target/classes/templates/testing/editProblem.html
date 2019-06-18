@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑题目</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<script type="text/javascript">
+</script>
+<body class="gray-bg">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h4 id="dialogTitle"></h4>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" id="dialogProblemInfo" class="form-horizontal">
+                        <div class="row">
+                            <div class="from-group">
+                                <label class="col-sm-4 control-label">题目名称：</label>
+                                <div class="col-sm-6">
+                                    <input id="dialogProblemName" name="dialogProblemName" type="text"  class="form-control" placeholder="请输入题目名称">
+                                    <input id="dialogProblemId" type="text" hidden>
+                                </div>
+                            </div>
+                        </div><br><br>
+                        <div class="row we">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">题目类别：</label>
+                                    <div class="col-sm-6">
+                                        <select id="problemSubject" name="problemSubject" class="form-control"  aria-required="true" aria-invalid="false">
+                                             <option value="-1">请选择</option>
+                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-6 control-label">是否公开：</label>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline">
+                                            <input type="radio" id="dialogProblemPublicOn" name="optionsRadios" value="on" >是</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" id="dialogProblemPublic" name="optionsRadios" value="no" >否
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">时间限制（MS）：</label>
+                                    <div class="col-sm-6">
+                                         <input id="dialogProblemMaxTime" name="dialogProblemMaxTime" type="text"  aria-required="true" aria-invalid="false" class="form-control" value="5000">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">内存限制（KB）：</label>
+                                    <div class="col-sm-6">
+                                        <input id="dialogProblemMaxMemory" name="dialogProblemMaxMemory" type="text"  aria-required="true" aria-invalid="false" class="form-control" value="50240">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">难度等级：</label>
+                                <div class="col-sm-3" >
+                                    <div id="dialogProblemRank" name="dialogProblemRank"></div>
+                                    <!--<input type="text" id="dialogProblemRank" name="dialogProblemRank" class="form-control"  >-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label class="col-sm-2 control-label">描述：</label>
+                                <div class="col-sm-10">
+                                    <div class="ibox-content no-padding" style="width: 900px;">
+                                          <div class="summernote" id="experDesc">
+                                          </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group  col-sm-12">
+                                    <label class=" control-label col-sm-2">数据描述:</label>
+                                <div class="col-sm-5">
+                                    <textarea id="dialogProblemInType" name="dialogProblemInType" placeholder="输入数据描述" class="form-control" rows="6" style="resize:none;"></textarea>
+                                </div>
+                                <div class="col-sm-5">
+                                    <textarea id="dialogProblemOutType" name="dialogProblemOutType" placeholder="输出数据描述" class="form-control" rows="6" style="resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group  col-sm-12">
+                                    <label class="control-label col-sm-2">展示用例:</label><br>
+                                <div class="col-sm-5">
+                                     <textarea id="dialogProblemInSample" name="dialogProblemInSample" placeholder="输入用例描述" class="form-control" rows="6" style="resize:none;"></textarea>
+                                </div>
+                                <div class="col-sm-5">
+                                    <textarea id="dialogProblemOutSample" name="dialogProblemOutSample" placeholder="输出用例描述" class="form-control" rows="6" style="resize:none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group  col-sm-12 " id="parentTest">
+                                <div class="row">
+                                    <label class="control-label col-sm-2">测试用例:</label>
+                                    <span class="btn btn-primary " onclick="newTest()">添加</span>
+                                </div>
+                                <div class="row">
+                                    <input type="hidden" name="dialogProblemTestId" id="dialogProblemTestId" value="0">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-4">
+                                         <textarea id="dialogProblemInTest" name="dialogProblemInTest" placeholder="输入用例" class="form-control" rows="6" style="resize:none;"></textarea>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <textarea id="dialogProblemOutTest" name="dialogProblemOutTest" placeholder="输出用例" class="form-control" rows="6" style="resize:none;"></textarea>
+                                    </div>
+                                     <input type="button" class="btn btn-primary " onclick="deleteTest(this)" value="删除">
+                                </div>
+
+                            </div>
+                        <div class="form-group col-sm-12">
+                            <div class="row">
+                                <label class="col-sm-2 control-label ">范例代码:</label><br>
+                                    <div class="col-sm-4">
+                                        <label class="control-label">公开</label>
+                                        <input type="checkbox" id="dialogCodePublic" name="dialogCodePublic"   aria-required="true" aria-invalid="false" value="" ></label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-sm-3 control-label">测试</label>
+                                        <div class="col-sm-3">
+                                            <select id="dialogCodeLanguage" name="dialogCodeLanguage" class="form-control"  aria-required="true" aria-invalid="false">
+                                                <option value="G++" >G++</option>
+                                                <option value="GCC" >GCC</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-9">
+                                    <textarea id="dialogProblemCode" name="dialogProblemCode" placeholder="范例代码" class="form-control" rows="6" style="resize:none;"></textarea>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <input type="hidden" th:value="${session.user_name}" id="user">
+                            <a href="/problemsMn/"><button type="button" class="btn btn-white"  data-dismiss="modal">关闭</button></a>
+                            <button type="button" class="btn btn-primary" onclick="saveOrUpdateProblem()">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript" th:src="@{/js/OJ/testing/editProblem.js}"></script>
+    <script type="text/javascript" th:src="@{/js/OJ/testing/drawnSubjectTree.js}"></script>
+    <script type="text/javascript" th:src="@{/js/plugins/ionRangeSlider/ion.rangeSlider.min.js}"></script>
+
+</body>
+</html>

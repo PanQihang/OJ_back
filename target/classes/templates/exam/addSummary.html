@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>考试列表</h3>
+                </div>
+                <div class="ibox-content">
+                    <div class="row" style="height: 700px;">
+                        <div class="col-sm-12">
+                            <table id="examTable" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th width="30%">名称</th>
+                                    <th width="10%">类别</th>
+                                    <th width="25%">开始时间</th>
+                                    <th width="25%">结束时间</th>
+                                    <th width="10%">选择</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>已选择考试列表</h3>
+                </div>
+                <div class="ibox-content">
+                    <div class="row" style="height: 670px;">
+                        <div class="form-group">
+                            <div class="col-md-6 droppable sortable ui-droppable ui-sortable">
+                                <div class="form-group draggable ui-draggable dropped">
+                                    <label class="col-sm-4 control-label">报表名称：</label>
+                                    <div class="col-sm-push-8">
+                                        <input id="summaryName" type="text" class="form-control" placeholder="请输入名称">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <table id = "selectedExamTable" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th width="70%">名称</th>
+                                    <th width="30%">删除</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <button onClick="javascript :history.back(-1);" type="button" class="btn btn-primary">
+                            取 消
+                        </button>
+                        <button  type="button" class="btn btn-primary" style="width: 120px;" onClick="saveSummary()">
+                            生成成绩报表
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/OJ/exam/addSummary.js}"></script>
+</body>
+
+</html>

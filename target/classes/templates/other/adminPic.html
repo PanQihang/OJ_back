@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>轮播信息</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>待选择轮播文章列表</h3>
+                </div>
+                <div class="ibox-content">
+                    <div class="row" style="height: 400px;">
+                        <div class="col-sm-12">
+                            <table id="preSelectPicTable" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th width="15%">文章ID</th>
+                                    <th width="40%">文章名</th>
+                                    <th width="15%">上传者</th>
+                                    <th width="15%">备注</th>
+                                    <th width="15%">选择</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h3>已选择轮播文章列表</h3>
+                </div>
+                <div class="ibox-content">
+                    <div class="row" style="height: 400px;">
+                        <div class="col-sm-12">
+                            <table id = "selectedPicTable" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th width="15%">轮播顺序</th>
+                                    <th width="15%">文章ID</th>
+                                    <th width="25%">文章名</th>
+                                    <th width="15%">上传者</th>
+                                    <th width="15%">备注</th>
+                                    <th width="15%">删除</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:right;">
+        <button onClick="javascript :history.back(-1);" type="button" class="btn btn-primary">
+            取 消
+        </button>
+        <button  type="button" class="btn btn-primary" style="width: 150px;" onClick="saveAdminPic()">
+            保 存
+        </button>
+    </div>
+</div>
+<script th:inline="javascript">
+    var adminPicInfo = [[${info}]];
+</script>
+<script type="text/javascript" th:src="@{/js/OJ/other/adminPic.js}"></script>
+</body>
+
+</html>

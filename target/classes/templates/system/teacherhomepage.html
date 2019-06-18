@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+</head>
+<!--引入通用JS、css资源-->
+<div th:replace="common/staticImport :: common_resource"></div>
+<body class="gray-bg">
+        <div class="ibox float-e-margins" style="margin-top: 30px;margin-left: 100px;margin-right: 100px">
+            <div class="ibox-content">
+                <div class="echarts" id="echarts-line-chart" _echarts_instance_="1555300560876"
+                     style="-webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;">
+                    <div style="position: relative; overflow: hidden; width: 504px; height: 240px;">
+                        <div data-zr-dom-id="bg" class="zr-element"
+                             style="position: absolute; left: 0px; top: 0px; width: 767px; height: 240px; user-select: none;"></div>
+                        <canvas width="504" height="240" data-zr-dom-id="0" class="zr-element"
+                                style="position: absolute; left: 0px; top: 0px; width: 504px; height: 240px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                        <canvas width="504" height="240" data-zr-dom-id="1" class="zr-element"
+                                style="position: absolute; left: 0px; top: 0px; width: 504px; height: 240px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                        <canvas width="504" height="240" data-zr-dom-id="_zrender_hover_" class="zr-element"
+                                style="position: absolute; left: 0px; top: 0px; width: 504px; height: 240px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+                        <div class="echarts-tooltip zr-element"
+                             style="position: absolute; display: none; border-style: solid; white-space: nowrap; transition: left 0.4s ease 0s, top 0.4s ease 0s; background-color: rgba(0, 0, 0, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); padding: 5px; left: 509px; top: 166px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table border="0px" >
+                <tr id="notes">
+                </tr>
+            </table>
+            <h3 align="right"><a class="btn btn-info btn-rounded" href="/testMn/">查看更多考试</a></h3>
+            <h3 align="right"><a class="btn btn-info btn-rounded" href="/experimentMn/">查看更多实验</a></h3>
+            <div class="col-lg-3"><h1>如何新增题目？</h1>
+                <h3>题目包含如下几个要素：</h3>
+                <ul>
+                    <li>标题、所属课题、描述;</li>
+                    <li>输入输出格式及样例；</li>
+                    <li>测试用例。</li>
+                </ul>
+                <p>
+                    <a class="btn btn-primary" href="/problemsMn/editProblem">开始 »</a>
+                </p>
+            </div>
+            <div class="col-lg-3">
+                <h1>如何创建考试？</h1>
+                <h3>题目包含如下几个要素：</h3>
+                <ul>
+                    <li>包含题目及分数配比；</li>
+                    <li>参加考试的学生；</li>
+                    <li>考试时间及地点设定。</li>
+                </ul>
+                <p><a class="btn btn-primary" href="/testMn/addTest/add">开始
+                    »</a></p>
+            </div>
+            <div class="col-lg-3">
+                <h1>如何创建实验？</h1>
+                <h3>题目包含如下几个要素：</h3>
+                <ul>
+                    <li>包含题目及分数配比；</li>
+                    <li>参加实验的学生；</li>
+                    <li>实验时间及地点设定。</li>
+                </ul>
+                <p><a class="btn btn-primary" href="/experimentMn/addExper/add">开始
+                    »</a></p>
+            </div>
+            <div class="col-lg-3">
+                <h1>如何查看成绩？</h1>
+                <h3>首先进入考试列表</h3>
+                <h3>找到需要查询的考试</h3>
+                <h3>点击查看成绩按钮，查看成绩</h3>
+                <p><a class="btn btn-primary" href="/testMn/">开始
+                    »</a></p>
+            </div>
+        </div>
+    <!-- /middle -->
+<script type="text/javascript" th:src="@{/js/OJ/system/homepage.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugins/echarts/echarts-all.js}"></script>
+</body>
+
+</html>
